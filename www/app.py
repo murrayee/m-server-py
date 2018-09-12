@@ -10,12 +10,12 @@ import orm
 from coroweb import add_routes
 
 from config import configs
+from handlers import cookie2user, COOKIE_NAME
 
 
 async def logger_factory(app, handler):
     async def logger(request):
         logging.info('Request: %s %s' % (request.method, request.path))
-        # yield from asyncio.sleep(0.3)
         return await handler(request)
 
     return logger
